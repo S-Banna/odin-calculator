@@ -10,11 +10,23 @@ for (i = 0; i < 16; i++) {
     buttons[i].addEventListener("click", type);
 }
 let clear = document.querySelector(".clear");
-clear.addEventListener("click", function () {display.textContent = " "; operand1 = ""; operand2 = "", operator = ""})
+clear.addEventListener("click", function () {display.textContent = " "; operand1 = ""; operand2 = "", operator = ""; display2.textContent = " "; display3.textContent = ""})
 
 function type() {
     
     if (this.innerHTML=="*" || this.innerHTML=="+" || this.innerHTML=="/" || this.innerHTML=="-") {
+        if (display3.innerHTML != "") {
+            operand2 = display.textContent;
+            display2.innerHTML = "";
+            display3.innerHTML = "";
+            display.innerHTML=(operate(operand1, operator, operand2));
+            operand1 = display.textContent;
+            operator = this.innerHTML;
+            display3.textContent = this.innerHTML;
+            display2.textContent = display.textContent;
+            display.textContent = "";
+            return;
+        }
         operand1 = display.textContent;
         operator = this.innerHTML;
         display3.textContent = this.innerHTML;
@@ -25,7 +37,6 @@ function type() {
         operand2 = display.textContent;
         display2.innerHTML = "";
         display3.innerHTML = "";
-        console.log(operand2);
         display.innerHTML=(operate(operand1, operator, operand2));
         return;
     }
@@ -34,9 +45,6 @@ function type() {
     if (this.innerHTML=="*" || this.innerHTML=="+" || this.innerHTML=="/" || this.innerHTML=="-") {
         display.textContent = "";
     }
-    console.log(display);
-    console.log(operand1);
-    console.log(operator);
 }
 
 
