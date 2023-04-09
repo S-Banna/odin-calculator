@@ -2,6 +2,19 @@ let operand1;
 let operand2;
 let operator;
 let display = document.querySelector(".screen");
+let button = document.querySelector(".numbers");
+let buttons = button.querySelectorAll("button");
+for (i = 0; i < 16; i++) {
+    buttons[i].addEventListener("click", type);
+}
+let clear = document.querySelector(".clear");
+clear.addEventListener("click", function () {display.textContent = " ";})
+
+function type() {
+    let now = this.innerHTML;
+    display.textContent = display.textContent + now;
+}
+
 
 function add(num1, num2) {
     return num1 + num2;
